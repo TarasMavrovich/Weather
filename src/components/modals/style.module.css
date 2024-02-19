@@ -1,0 +1,107 @@
+.container {
+  box-shadow: rgba(88, 88, 201, 0.2) 0px 7px 29px 0px;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 400px;
+  z-index: 1000;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(255, 255, 255);
+  padding: 10px;
+  border-bottom: 1px solid rgba(136, 136, 136, 0.322);
+}
+
+.create_trip {
+  font-weight: 600;
+}
+
+.button {
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.main {
+  padding: 10px;
+  margin-top: 20px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid rgba(136, 136, 136, 0.322);
+}
+
+.trip {
+  max-width: 100%;
+  margin-top: 10px;
+}
+
+.trip span {
+  display: inline;
+  color: red;
+  padding-right: 5px;
+}
+
+.trip div {
+  margin-bottom: 5px;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.1;
+}
+
+.trip select {
+  width: 100%;
+  padding: 7px;
+}
+
+.trip input {
+  width: 365px;
+  padding: 5px;
+}
+
+.trip select,
+.trip input {
+  outline: none;
+  border-color: rgb(210, 211, 212);
+  color: rgb(210, 211, 212);
+}
+
+.trip select:hover,
+.trip input:hover {
+  cursor: pointer;
+}
+
+.button_container {
+  float: right;
+  margin: 10px;
+}
+
+.cancel_btn,
+.save_btn {
+  height: 30px;
+  margin-left: 10px;
+  padding: 10px;
+  outline: none;
+  background-color: white;
+  border: 1px solid rgb(210, 211, 212);
+  border-radius: 2px;
+  line-height: 0;
+}
+
+.cancel_btn:hover,
+.save_btn:hover {
+  color: white;
+  cursor: pointer;
+  background-color: red;
+}
+
+.save_btn:hover {
+  background-color: blue;
+}

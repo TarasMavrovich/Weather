@@ -1,0 +1,8 @@
+.search {
+  background-color: rgba(177, 177, 177, 0.151);
+  border: 1px solid rgba(177, 177, 177, 0.151);
+  outline: none;
+  padding: 10px;
+  padding-left: 25px;
+  border-radius: 5px;
+}

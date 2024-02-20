@@ -1,4 +1,29 @@
 .container {
+  width: 100%;
   display: flex;
   margin-top: 20px;
+}
+
+.trips {
+  display: flex;
+  float: right;
+}
+
+.trip {
+  display: flex;
+}
+
+.button {
+  display: flex;
+  width: 150px;
+  height: 150px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border: 1px solid white;
+}
+
+.button:hover {
+  cursor: pointer;
 }

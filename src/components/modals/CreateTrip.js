@@ -5,20 +5,40 @@ const CreateTrip = ({ show, onHide, onAddTrip }) => {
   const [selectedCity, setSelectedCity] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [validationErrors, setValidationErrors] = useState({});
 
   const handleCityChange = (event) => {
     setSelectedCity(event.target.value);
+    setValidationErrors((prevErrors) => ({ ...prevErrors, city: "" }));
   };
 
   const handleStartDateChange = (event) => {
     setStartDate(event.target.value);
+    setValidationErrors((prevErrors) => ({ ...prevErrors, startDate: "" }));
   };
 
   const handleEndDateChange = (event) => {
     setEndDate(event.target.value);
+    setValidationErrors((prevErrors) => ({ ...prevErrors, endDate: "" }));
   };
 
   const handleAddClick = () => {
+    const errors = {};
+    if (!selectedCity) {
+      errors.city = "City is required";
+    }
+    if (!startDate) {
+      errors.startDate = "Start date is required";
+    }
+    if (!endDate) {
+      errors.endDate = "End date is required";
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setValidationErrors(errors);
+      return;
+    }
+
     const newTrip = {
       id: Date.now(),
       destination: selectedCity,
@@ -26,6 +46,7 @@ const CreateTrip = ({ show, onHide, onAddTrip }) => {
       endDate,
     };
     onAddTrip(newTrip);
+    setValidationErrors({});
     onHide();
   };
 
@@ -48,7 +69,11 @@ const CreateTrip = ({ show, onHide, onAddTrip }) => {
                 <span>*</span>
                 City
               </div>
-              <select value={selectedCity} onChange={handleCityChange}>
+              <select
+                value={selectedCity}
+                onChange={handleCityChange}
+                className={validationErrors.city && style.inputError}
+              >
                 <option value="">Please select a city</option>
                 {cities.map((city) => (
                   <option key={city} value={city}>
@@ -56,6 +81,9 @@ const CreateTrip = ({ show, onHide, onAddTrip }) => {
                   </option>
                 ))}
               </select>
+              {validationErrors.city && (
+                <div className={style.error}>{validationErrors.city}</div>
+              )}
             </div>
 
             <div className={style.trip}>
@@ -68,7 +96,11 @@ const CreateTrip = ({ show, onHide, onAddTrip }) => {
                 value={startDate}
                 onChange={handleStartDateChange}
                 placeholder="Select date"
+                className={validationErrors.startDate && style.inputError}
               />
+              {validationErrors.startDate && (
+                <div className={style.error}>{validationErrors.startDate}</div>
+              )}
             </div>
 
             <div className={style.trip}>
@@ -80,7 +112,11 @@ const CreateTrip = ({ show, onHide, onAddTrip }) => {
                 type="date"
                 value={endDate}
                 onChange={handleEndDateChange}
+                className={validationErrors.endDate && style.inputError}
               />
+              {validationErrors.endDate && (
+                <div className={style.error}>{validationErrors.endDate}</div>
+              )}
             </div>
           </div>
 

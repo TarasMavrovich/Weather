@@ -52,7 +52,6 @@
 .trip div {
   margin-bottom: 5px;
   font-weight: 600;
-  font-size: 15px;
   line-height: 1.1;
 }
 
@@ -104,4 +103,11 @@
 
 .save_btn:hover {
   background-color: blue;
+}
+
+.error {
+  position: absolute;
+  left: 20px;
+  color: red;
+  font-size: 10px;
 }

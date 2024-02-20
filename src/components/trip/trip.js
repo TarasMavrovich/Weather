@@ -1,19 +1,16 @@
-import React from "react";
-
-const Trip = ({ data }) => {
-  const lastDay =
-    data.days && data.days.length > 0 ? data.days.at(-1).datetime : "";
+const Trip = ({ data, handleClickOneTrip }) => {
+  if (!data) {
+    return null;
+  }
+  const { destination, startDate, endDate } = data;
 
   return (
-    <div>
-      <img
-        src="https://via.placeholder.com/150x150.png"
-        alt={data.resolvedAddress}
-      />
+    <div onClick={handleClickOneTrip}>
+      <img src="https://via.placeholder.com/150x150.png" alt={destination} />
       <div>
-        <div>{data.address}</div>
+        <div>{destination}</div>
         <div>
-          {data.days[0].datetime} - {lastDay}
+          {startDate} - {endDate}
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import style from "./style.module.css";
 
-const CreateTrip = ({ show, onHide }) => {
+const CreateTrip = ({ show, onHide, onAddTrip }) => {
   const [selectedCity, setSelectedCity] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -25,12 +25,11 @@ const CreateTrip = ({ show, onHide }) => {
       startDate,
       endDate,
     };
-    console.log(newTrip);
+    onAddTrip(newTrip);
     onHide();
-    // onAddTrip(newTrip)
   };
 
-  const cities = ["City1", "City2", "City3"];
+  const cities = ["Tokyo", "Kyiv", "City3"];
 
   return (
     <>

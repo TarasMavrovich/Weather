@@ -2,7 +2,7 @@ import React from "react";
 import style from "./style.module.css";
 import searchIcon from "../../assets/magnifying-glass-solid.svg";
 
-const Search = ({ value, setSearch }) => {
+const Search = ({ search, setSearch }) => {
   const searchIconStyle = {
     backgroundImage: `url(${searchIcon})`,
     backgroundSize: "5%",
@@ -11,13 +11,14 @@ const Search = ({ value, setSearch }) => {
 
   return (
     <div>
+      <h1>Weather Forecast</h1>
       <div>
         <input
           style={searchIconStyle}
           className={style.search}
           placeholder="Search your trip"
           onChange={(e) => setSearch(e.target.value)}
-          value={value}
+          value={search}
         />
       </div>
     </div>

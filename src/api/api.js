@@ -3,13 +3,20 @@ const api = {
   base: "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/",
 };
 
-async function checkWeather(city) {
+async function checkWeather(city, firstDate, lastDate) {
   const response = await fetch(
-    api.base + city + `?unitGroup=metric&include=days&key=${api.key}`
+    api.base + city + "/" + firstDate + "/" + lastDate + `?key=${api.key}`
   );
   const data = await response.json();
 
   return data;
 }
 
-export { checkWeather };
+async function checkOneDayWeather(city, day) {
+  const response = await fetch(api.base + city + `/today?key=${api.key}`);
+  const data = await response.json();
+
+  return data;
+}
+
+export { checkWeather, checkOneDayWeather };

@@ -5,27 +5,44 @@ import CreateTrip from "../modals/CreateTrip";
 import style from "./style.module.css";
 
 const Trips = ({ search }) => {
+  const [trips, setTrips] = useState([]);
   const [weatherData, setWeatherData] = useState(null);
   const [tripVisible, setTripVisible] = useState(false);
+
+  const handleAddTrip = (newTrip) => {
+    const updateTrips = [...trips, newTrip];
+    setTrips(updateTrips);
+  };
 
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        const data = await checkWeather();
-        setWeatherData(data);
+        if (trips.length > 0) {
+          const { destination, startDate, endDate } = trips[0];
+          const data = await checkWeather(destination, startDate, endDate);
+          setWeatherData(data);
+        }
       } catch (error) {
         console.error("Error fetching weather data: ", error);
       }
     };
+
     fetchWeatherData();
-  }, []);
+  }, [trips]);
 
   return (
     <div className={style.container}>
-      {weatherData && <Trip data={weatherData} />}
-      {weatherData && <Trip data={weatherData} />}
-      <button onClick={() => setTripVisible(true)}>+ Add trip</button>
-      <CreateTrip show={tripVisible} onHide={() => setTripVisible(false)} />
+      <div>
+        {trips.map((trip) => (
+          <Trip key={trip.id} tripData={trip} />
+        ))}
+        <button onClick={() => setTripVisible(true)}>+ Add trip</button>
+        <CreateTrip
+          show={tripVisible}
+          onHide={() => setTripVisible(false)}
+          onAddTrip={handleAddTrip}
+        />
+      </div>
     </div>
   );
 };
